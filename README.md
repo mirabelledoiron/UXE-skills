@@ -89,15 +89,30 @@ Restart Claude Code (or start a new session), then type `/uxe-senior` — the sk
 
 ## Usage
 
-### Invoke directly
+You can use the skill in two ways:
+
+### 1. Slash command (explicit)
+
+Type `/uxe-senior` followed by your request:
+
+```
+/uxe-senior Build an accessible DatePicker component with keyboard navigation and dark mode
+```
 
 ```
 /uxe-senior Build an accessible Select dropdown with keyboard navigation, ARIA roles, dark mode, and Storybook stories with play() and a11y checks.
 ```
 
-### Auto-invocation
+### 2. Auto-invocation (implicit)
 
-The skill also activates automatically when Claude detects a matching request — for example, asking to "build a React component" or "do a WCAG audit" will trigger it without the slash command.
+Just describe a task that matches the skill's scope — Claude will load it automatically. No slash command needed. For example:
+
+- "Build me a React Select component with ARIA roles and keyboard support"
+- "Do a WCAG audit on this component"
+- "Create a design token system for light/dark theming"
+- "Translate this Figma design to React with Storybook stories"
+
+> **Note:** After installing, you'll need to restart Claude Code (or start a new session) for the skill to appear. After that, `/uxe-senior` will autocomplete and be available in every project.
 
 ### Run the validation scripts
 
