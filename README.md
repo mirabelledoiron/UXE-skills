@@ -1,6 +1,11 @@
 # UXE Senior — Claude Code Skill
 
+> Created by Mirabelle Doiron — UX Engineer, design systems, accessibility.
+> [mirabelledoiron.com](https://mirabelledoiron.com) · [github.com/mirabelledoiron](https://github.com/mirabelledoiron)
+
 A [Claude Code skill](https://docs.anthropic.com/en/docs/claude-code/skills) that applies senior UX engineering judgment to every component you build. It enforces accessibility-first development, token-based theming, and production-grade testing — so Claude works like a seasoned UX engineer, not a code autocomplete.
+
+I built this after being laid off in 2025. The AI tools that supposedly replaced me were generating inaccessible, token-less, untested components. This skill is the correction — eight-plus years of senior UXE judgment encoded as hard gates and a workflow, so AI works *with* the craft instead of around it.
 
 ## What it does
 
@@ -19,20 +24,21 @@ When active, this skill instructs Claude to:
 ## What's included
 
 ```
-uxe-senior/
-├── SKILL.md                          # The skill definition (frontmatter + instructions)
+UXE-skills/
 ├── README.md                         # You are here
-├── references/
-│   ├── knowledge-accessibility-wcag-2-1-aa-checklist.md
-│   ├── knowledge-radix-primitives-architecture-hooks.md
-│   ├── knowledge-storybook-quickstart-and-concepts.md
-│   ├── knowledge-mcp-and-claude-tooling-integration-notes.md
-│   ├── source-pack.md                # Index of all source material
-│   ├── test-prompts.md               # 8 test prompts (5 should-trigger, 3 should-not)
-│   └── source-*.md                   # Preserved source material (WCAG 2.1, Radix, Storybook, MCP, Style Dictionary, Claude API)
-└── scripts/
-    ├── preflight-uxe-senior.mjs      # Checks output for ARIA intent, token usage, no secrets
-    └── validate-uxe-senior-token-usage.mjs  # Scans files for hardcoded hex colors
+└── uxe-senior/
+    ├── SKILL.md                      # The skill definition (frontmatter + instructions)
+    ├── references/
+    │   ├── knowledge-accessibility-wcag-2-1-aa-checklist.md
+    │   ├── knowledge-radix-primitives-architecture-hooks.md
+    │   ├── knowledge-storybook-quickstart-and-concepts.md
+    │   ├── knowledge-mcp-and-claude-tooling-integration-notes.md
+    │   ├── source-pack.md            # Index of all source material
+    │   ├── test-prompts.md           # 8 test prompts (5 should-trigger, 3 should-not)
+    │   └── source-*.md               # Preserved source material (WCAG 2.1, Radix, Storybook, MCP, Style Dictionary, Claude API)
+    └── scripts/
+        ├── preflight-uxe-senior.mjs  # Checks output for ARIA intent, token usage, no secrets
+        └── validate-uxe-senior-token-usage.mjs  # Scans files for hardcoded hex colors
 ```
 
 ### Reference knowledge
@@ -55,7 +61,7 @@ The `references/` folder contains distilled knowledge files that Claude reads wh
 
 ## How it was built
 
-This skill was built by combining domain expertise in UX engineering with curated source material from:
+I built this by combining eight-plus years of UX engineering judgment with curated source material from:
 
 - [WCAG 2.1 specification](https://www.w3.org/TR/WCAG21/) (W3C) — distilled into an AA-level component audit checklist
 - [Radix Primitives docs](https://www.radix-ui.com/primitives/docs/overview/introduction) — distilled into architecture traits and usage heuristics
@@ -134,6 +140,15 @@ See [`references/test-prompts.md`](references/test-prompts.md) for 8 ready-made 
 - Node.js (for the validation scripts)
 - pnpm and git (referenced in the skill metadata)
 
+## Credits
+
+**Author:** Mirabelle Doiron — UX Engineer (Design Systems, Accessibility)
+[mirabelledoiron.com](https://mirabelledoiron.com) · [github.com/mirabelledoiron](https://github.com/mirabelledoiron)
+
+Every hard gate in `SKILL.md` is a scar from production work: "never hardcode hex colors" came from watching token systems break at scale. "Never generate a component without ARIA roles" came from auditing inaccessible output. "Never auto-publish to npm" came from knowing what a breaking change costs a team. AI doesn't know what a broken token architecture costs at scale — this skill is how that knowledge stays in the loop.
+
+If you fork, extend, or build on this, please keep attribution intact and open a PR if you add new gates or reference material worth sharing back.
+
 ## License
 
-MIT
+MIT © Mirabelle Doiron

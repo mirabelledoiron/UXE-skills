@@ -1,5 +1,8 @@
 # Storybook — use for isolated component states & documentation
 
+## Why this matters (from the field)
+Static stories catch static bugs. They show you that a component renders — they don't show you that it's usable. The failures worth catching happen *between* renders: focus moves to the wrong element after a menu closes, a keyboard user gets trapped inside a dialog, an error state announces itself visually but not to a screen reader. Those bugs only surface when something drives the component the way a real user would, and that's what `play()` functions are for. Any story that represents an interactive state — open/close, keyboard navigation, form errors — should have a `play()` that exercises the interaction and asserts the result, plus an axe check gating the run. If a story doesn't have a `play()`, ask whether the state it's showing is actually static; if it isn't, the test coverage is a lie. Treat Storybook as a test runner that happens to render components, not a gallery that happens to run tests.
+
 ## Source basis
 - `references/source-03-get-started-with-storybook-storybook-docs.md`
 

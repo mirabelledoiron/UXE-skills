@@ -1,6 +1,10 @@
 ---
 name: uxe-senior
 description: "Apply senior UX engineering judgment to build production-grade, accessible React/TypeScript component libraries with design tokens, WCAG 2.1 AA-focused QA, Storybook stories (including play() + a11y checks), Tailwind theming, versioning with Changesets, and AI-integrated developer tooling via MCP/Claude workflows."
+author: Mirabelle Doiron
+homepage: https://github.com/mirabelledoiron/UXE-skills
+created: 2026-04
+license: MIT
 metadata:
   version: 1.0.0
   required_bins: [node, pnpm, git]

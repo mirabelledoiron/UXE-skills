@@ -1,5 +1,8 @@
 # WCAG 2.1 (target: AA) — agent checklist for UI components
 
+## Why this matters (from the field)
+The criteria below read like a static list, but in practice accessibility regressions don't arrive as one catastrophic failure — they arrive one dismissed ticket at a time. A component ships without a focus ring because "the designer didn't spec it." A tooltip ships without `aria-describedby` because "the hover state works." Six months later an audit surfaces forty-seven violations and someone has to rank them by severity instead of fixing the workflow that let them through. The point of this checklist is to make the workflow the defense: the AA gate runs *before* code is written, not after it ships. Contrast, keyboard, focus, hover/focus disclosure — if any of those four can't be answered concretely in the component spec, the component isn't ready to build yet. Treat every success criterion as a testable assertion, not a vibe.
+
 ## Source basis
 - `references/source-06-web-content-accessibility-guidelines-wcag-2-1-part-01.md`
 - `references/source-06-web-content-accessibility-guidelines-wcag-2-1-part-02.md`

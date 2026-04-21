@@ -1,5 +1,8 @@
 # MCP + Claude integration — what the sources explicitly say
 
+## Why this matters (from the field)
+The conversation around "AI in developer workflows" usually collapses into two failure modes: hand the agent everything and hope, or lock it down so hard it can't do anything useful. MCP is interesting because it gives you a third option — a standardized connector surface where the *contract* for each tool is explicit, inspectable, and revocable. For a design-systems workflow, the practical application is narrow and specific: let Claude read from Figma, read component source, run validation scripts, and draft Storybook stories — but never let it auto-publish, auto-merge, or touch production secrets without a human-in-the-loop approval step. The failure mode to design against is not a rogue agent — it's an agent that quietly normalizes unsafe defaults (hardcoded hex, skipped a11y checks, un-versioned breaking changes) because nobody wired a gate. Encode the gates as tool definitions and validation scripts; let the agent be fast inside a small, trusted surface.
+
 ## Source basis
 - `references/source-01-what-is-the-model-context-protocol-mcp-model-con.md`
 - `references/source-02-building-with-claude-claude-api-docs.md`
