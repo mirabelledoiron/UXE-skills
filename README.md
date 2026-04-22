@@ -5,7 +5,7 @@
 
 A [Claude Code skill](https://docs.anthropic.com/en/docs/claude-code/skills) that applies senior UX engineering judgment to every component you build. It enforces accessibility-first development, token-based theming, and production-grade testing — so Claude works like a seasoned UX engineer, not a code autocomplete.
 
-I built this after being laid off in 2025. The AI tools that supposedly replaced me were generating inaccessible, token-less, untested components. This skill is the correction — eight-plus years of senior UXE judgment encoded as hard gates and a workflow, so AI works *with* the craft instead of around it.
+The AI tools flooding the market were generating inaccessible, token-less, untested components. This skill is the correction — 8+ years of senior UXE judgment encoded as hard gates and a workflow, so AI works *with* the craft instead of around it.
 
 ## What it does
 
@@ -61,7 +61,7 @@ The `references/` folder contains distilled knowledge files that Claude reads wh
 
 ## How it was built
 
-I built this by combining eight-plus years of UX engineering judgment with curated source material from:
+I built this by combining UX engineering judgment with curated source material from:
 
 - [WCAG 2.1 specification](https://www.w3.org/TR/WCAG21/) (W3C) — distilled into an AA-level component audit checklist
 - [Radix Primitives docs](https://www.radix-ui.com/primitives/docs/overview/introduction) — distilled into architecture traits and usage heuristics
