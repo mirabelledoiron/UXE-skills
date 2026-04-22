@@ -1,154 +1,192 @@
 # UXE Senior — Claude Code Skill
 
-> Created by Mirabelle Doiron — UX Engineer, design systems, accessibility.
+> Created by Mirabelle Doiron — UX Engineer (Design Systems, Accessibility)  
 > [mirabelledoiron.com](https://mirabelledoiron.com) · [github.com/mirabelledoiron](https://github.com/mirabelledoiron)
 
-A [Claude Code skill](https://docs.anthropic.com/en/docs/claude-code/skills) that applies senior UX engineering judgment to every component you build. It enforces accessibility-first development, token-based theming, and production-grade testing — so Claude works like a seasoned UX engineer, not a code autocomplete.
+A [Claude Code skill](https://docs.anthropic.com/en/docs/claude-code/skills) that applies **senior UX engineering constraints and workflows** to every component you generate.
 
-The AI tools flooding the market were generating inaccessible, token-less, untested components. This skill is the correction — 8+ years of senior UXE judgment encoded as hard gates and a workflow, so AI works *with* the craft instead of around it.
+It enforces accessibility-first development, token-based theming, and production-ready structure — so output is closer to what a design systems engineer would ship, not just syntactically correct code.
+
+Most AI-generated UI breaks at the same points: accessibility gaps, hardcoded styles, and no system alignment. This skill addresses those failure modes by encoding real UXE decision-making into explicit gates and workflows.
+
+---
 
 ## What it does
 
 When active, this skill instructs Claude to:
 
-- **Gate on scope** — refuses pure-backend or mobile-native requests that have no React/web UI layer
-- **Produce an accessibility spec before writing code** — WCAG 2.1 AA checklist, keyboard operability, focus management, contrast ratios
-- **Use Radix Primitives** as the default behavior layer for known interactive patterns
-- **Enforce token-based theming** — no hardcoded hex colors; light/dark at minimum via CSS custom properties or Tailwind config
-- **Generate complete React/TypeScript components** with full prop types, ARIA roles, keyboard support, and JSDoc
-- **Scaffold Storybook stories** with `play()` functions that exercise keyboard interactions and `axe-core` a11y checks
-- **Translate Figma designs** to deterministic token mappings (not raw hex) when given a design spec
-- **Draft Changeset entries** with migration notes when a prop API change would break consumers
-- **Outline MCP + Claude integrations** for developer tooling workflows (no secrets, human-in-the-loop)
+- **Gate on scope**  
+  Refuses requests that don’t involve a web UI layer (e.g. pure backend or mobile-native)
 
-## What's included
+- **Produce an accessibility spec before code**  
+  WCAG 2.1 AA checklist including keyboard interaction, focus management, semantics, and state handling
 
-```
+- **Use Radix Primitives by default**  
+  For common interactive patterns (Select, Dialog, Popover, etc.)
+
+- **Enforce token-based theming**  
+  No hardcoded values; uses CSS custom properties or Tailwind tokens (light/dark minimum)
+
+- **Generate complete React + TypeScript components**  
+  Typed props, ARIA roles where appropriate, keyboard support, and clear structure
+
+- **Scaffold Storybook stories**  
+  Includes `play()` functions for interaction testing and `axe-core` accessibility checks
+
+- **Map design inputs to tokens (not raw styles)**  
+  When given Figma specs, converts values into token usage instead of inline styles
+
+- **Draft Changesets for breaking changes**  
+  Includes migration notes when component APIs change
+
+- **Outline Claude + MCP integrations**  
+  For developer workflows, with no secrets and human-in-the-loop constraints
+
+---
+
+## What’s included
+
+```bash
+
 UXE-skills/
-├── README.md                         # You are here
+├── README.md
 └── uxe-senior/
-    ├── SKILL.md                      # The skill definition (frontmatter + instructions)
-    ├── references/
-    │   ├── knowledge-accessibility-wcag-2-1-aa-checklist.md
-    │   ├── knowledge-radix-primitives-architecture-hooks.md
-    │   ├── knowledge-storybook-quickstart-and-concepts.md
-    │   ├── knowledge-mcp-and-claude-tooling-integration-notes.md
-    │   ├── source-pack.md            # Index of all source material
-    │   ├── test-prompts.md           # 8 test prompts (5 should-trigger, 3 should-not)
-    │   └── source-*.md               # Preserved source material (WCAG 2.1, Radix, Storybook, MCP, Style Dictionary, Claude API)
-    └── scripts/
-        ├── preflight-uxe-senior.mjs  # Checks output for ARIA intent, token usage, no secrets
-        └── validate-uxe-senior-token-usage.mjs  # Scans files for hardcoded hex colors
-```
+├── SKILL.md
+├── references/
+│   ├── knowledge-accessibility-wcag-2-1-aa-checklist.md
+│   ├── knowledge-radix-primitives-architecture-hooks.md
+│   ├── knowledge-storybook-quickstart-and-concepts.md
+│   ├── knowledge-mcp-and-claude-tooling-integration-notes.md
+│   ├── source-pack.md
+│   ├── test-prompts.md
+│   └── source-*.md
+└── scripts/
+├── preflight-uxe-senior.mjs
+└── validate-uxe-senior-token-usage.mjs
 
-### Reference knowledge
+````
 
-The `references/` folder contains distilled knowledge files that Claude reads when the skill is active:
+---
 
-| File | Covers |
+## Reference knowledge
+
+The `references/` folder contains distilled material the skill uses:
+
+| File | Purpose |
 |------|--------|
-| `knowledge-accessibility-wcag-2-1-aa-checklist.md` | WCAG 2.1 AA audit checklist for UI components — contrast, keyboard, focus, reflow, hover/focus content, forms/errors |
-| `knowledge-radix-primitives-architecture-hooks.md` | Radix Primitives traits — unstyled, accessible, open architecture, incremental adoption |
-| `knowledge-storybook-quickstart-and-concepts.md` | Storybook concepts — stories, autodocs, accessibility/interaction/visual testing |
-| `knowledge-mcp-and-claude-tooling-integration-notes.md` | MCP protocol overview + Claude API tool-use integration patterns |
+| `knowledge-accessibility-wcag-2-1-aa-checklist.md` | Component-level WCAG 2.1 AA checklist |
+| `knowledge-radix-primitives-architecture-hooks.md` | Radix usage patterns and constraints |
+| `knowledge-storybook-quickstart-and-concepts.md` | Storybook structure, testing, and docs |
+| `knowledge-mcp-and-claude-tooling-integration-notes.md` | MCP + Claude integration patterns |
 
-### Validation scripts
+---
 
-| Script | What it checks |
-|--------|---------------|
-| `preflight-uxe-senior.mjs <file>` | Verifies output mentions ARIA/roles, uses tokens not hex, includes a11y intent, has no leaked secrets |
-| `validate-uxe-senior-token-usage.mjs <dir>` | Walks a directory tree and fails if any file contains hardcoded hex color literals |
+## Validation scripts
+
+| Script | Purpose |
+|--------|--------|
+| `preflight-uxe-senior.mjs <file>` | Checks for accessibility intent, token usage, and obvious issues |
+| `validate-uxe-senior-token-usage.mjs <dir>` | Fails if hardcoded hex colors are found |
+
+---
 
 ## How it was built
 
-I built this by combining UX engineering judgment with curated source material from:
+This skill combines UX engineering patterns with curated source material:
 
-- [WCAG 2.1 specification](https://www.w3.org/TR/WCAG21/) (W3C) — distilled into an AA-level component audit checklist
-- [Radix Primitives docs](https://www.radix-ui.com/primitives/docs/overview/introduction) — distilled into architecture traits and usage heuristics
-- [Storybook docs](https://storybook.js.org/docs) — distilled into testing and documentation guidance
-- [Model Context Protocol (MCP)](https://modelcontextprotocol.io/introduction) — distilled into integration patterns
-- [Claude API docs](https://docs.anthropic.com/en/docs/overview) — distilled into tool-use workflow guidance
-- [Style Dictionary](https://styledictionary.com) — referenced for design token export patterns
+- [WCAG 2.1](https://www.w3.org/TR/WCAG21/) — distilled into a component-level checklist  
+- [Radix Primitives](https://www.radix-ui.com/primitives/docs/overview/introduction) — behavior layer patterns  
+- [Storybook](https://storybook.js.org/docs) — testing and documentation workflows  
+- [Model Context Protocol (MCP)](https://modelcontextprotocol.io/introduction) — tool integration patterns  
+- [Claude API](https://docs.anthropic.com/en/docs/overview) — structured tool usage  
+- [Style Dictionary](https://styledictionary.com) — token architecture reference  
 
-Each source was ingested, the key concepts were extracted into `knowledge-*.md` files, and the raw material was preserved as `source-*.md` files for fallback. The `SKILL.md` workflow was then written to encode senior-level decision-making: scope gating, accessibility-first specs, architecture choices, and safety constraints.
+Each source was reduced into `knowledge-*.md` files, with raw material preserved as `source-*.md`.
+
+The `SKILL.md` file encodes the actual workflow:
+- scope gating  
+- accessibility-first thinking  
+- system alignment (tokens, primitives)  
+- safe output constraints  
+
+---
 
 ## Install
 
-### Option 1: Personal skill (available in all your projects)
+### Option 1: Personal (available everywhere)
 
 ```bash
 git clone https://github.com/mirabelledoiron/UXE-skills.git
-ln -s "$(pwd)/UXE-skills/uxe-senior" ~/.claude/skills/uxe-senior
-```
+ln -s /absolute/path/to/UXE-skills/uxe-senior ~/.claude/skills/uxe-senior
+````
 
-### Option 2: Project skill (available in one project)
+### Option 2: Per project
 
 ```bash
-# From your project root
 git clone https://github.com/mirabelledoiron/UXE-skills.git /tmp/uxe-skills
 cp -r /tmp/uxe-skills/uxe-senior .claude/skills/uxe-senior
 ```
 
-### Verify
+---
 
-Restart Claude Code (or start a new session), then type `/uxe-senior` — the skill should appear in autocomplete.
+## Verify
+
+Restart Claude Code, then type:
+
+```bash
+/uxe-senior
+```
+
+It should appear in autocomplete.
+
+---
 
 ## Usage
 
-You can use the skill in two ways:
-
-### 1. Slash command (explicit)
-
-Type `/uxe-senior` followed by your request:
-
-```
-/uxe-senior Build an accessible DatePicker component with keyboard navigation and dark mode
-```
-
-```
-/uxe-senior Build an accessible Select dropdown with keyboard navigation, ARIA roles, dark mode, and Storybook stories with play() and a11y checks.
-```
-
-### 2. Auto-invocation (implicit)
-
-Just describe a task that matches the skill's scope — Claude will load it automatically. No slash command needed. For example:
-
-- "Build me a React Select component with ARIA roles and keyboard support"
-- "Do a WCAG audit on this component"
-- "Create a design token system for light/dark theming"
-- "Translate this Figma design to React with Storybook stories"
-
-> **Note:** After installing, you'll need to restart Claude Code (or start a new session) for the skill to appear. After that, `/uxe-senior` will autocomplete and be available in every project.
-
-### Run the validation scripts
+### Explicit
 
 ```bash
-# Check a component file for accessibility and token intent
-node uxe-senior/scripts/preflight-uxe-senior.mjs path/to/output.tsx
-
-# Scan a directory for hardcoded hex colors
-node uxe-senior/scripts/validate-uxe-senior-token-usage.mjs src/components
+/uxe-senior Build an accessible DatePicker with keyboard navigation and dark mode
 ```
 
-### Test prompts
+### Implicit
 
-See [`references/test-prompts.md`](references/test-prompts.md) for 8 ready-made prompts to verify the skill triggers correctly (and stays silent when it should).
+Just describe a relevant task:
+
+* “Build a React Select with keyboard support”
+* “Audit this component for WCAG issues”
+* “Create a token system for theming”
+* “Translate this Figma design into components”
+
+If it matches scope, the skill activates automatically.
+
+---
+
+## Run validation
+
+```bash
+node uxe-senior/scripts/preflight-uxe-senior.mjs path/to/file.tsx
+node uxe-senior/scripts/validate-uxe-senior-token-usage.mjs src/
+```
+
+---
 
 ## Requirements
 
-- [Claude Code](https://docs.anthropic.com/en/docs/claude-code) CLI, desktop app, or IDE extension
-- Node.js (for the validation scripts)
-- pnpm and git (referenced in the skill metadata)
+* [Claude Code](https://docs.anthropic.com/en/docs/claude-code)
+* [Node.js](https://nodejs.org/en)
+* [git](https://www.npmjs.com/package/git) (pnpm optional)
+
+---
 
 ## Credits
 
-**Author:** Mirabelle Doiron — UX Engineer (Design Systems, Accessibility)
-[mirabelledoiron.com](https://mirabelledoiron.com) · [github.com/mirabelledoiron](https://github.com/mirabelledoiron)
+This skill bundle comes from real production failures: accessibility gaps, token drift, and breaking changes at scale. The goal isn’t more code — it’s code that doesn’t break the system around it.
 
-Every hard gate in `SKILL.md` is a scar from production work: "never hardcode hex colors" came from watching token systems break at scale. "Never generate a component without ARIA roles" came from auditing inaccessible output. "Never auto-publish to npm" came from knowing what a breaking change costs a team. AI doesn't know what a broken token architecture costs at scale — this skill is how that knowledge stays in the loop.
-
-If you fork, extend, or build on this, please keep attribution intact and open a PR if you add new gates or reference material worth sharing back.
+---
 
 ## License
 
 MIT © Mirabelle Doiron
+
+
